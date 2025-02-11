@@ -1,10 +1,11 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
 ]{book}
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -35,7 +36,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -88,57 +88,38 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\usepackage{booktabs}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
+\usepackage{booktabs}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={A Minimal Book Example},
-  pdfauthor={John Doe},
+  pdftitle={Arduino for biologists and environmental scientists},
+  pdfauthor={Ed Baked (Ed.)},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{A Minimal Book Example}
-\author{John Doe}
-\date{2025-02-10}
+\title{Arduino for biologists and environmental scientists}
+\author{Ed Baked (Ed.)}
+\date{2025-02-11}
 
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -190,191 +171,24 @@ As you work, you may start a local server to live preview this HTML book. This p
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{Hello bookdown}\label{hello-bookdown}
+\chapter{Introduction}\label{introduction}
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (\texttt{\#}) per .Rmd file.
+Vince Smith 2017
 
-\section{A section}\label{a-section}
+If data collection, analysis and publication are the central tenets of scientific practice, then to date, only two of these processes have been significantly transformed by the Open Science movement. Open Source software has become the prevailing paradigm to support scientific enquiry, providing a new level of transparency and repeatability to the scientific process. Programming and scripting skills are becoming the norm amongst researchers within the biological science community, creating a new wave of innovation and reusable free tools that were once the preserve of a handful of software developers. Likewise, Open Publishing and Open Access to scientific data has accelerated a culture of data sharing and reuse, pioneered by the likes of GenBank and related molecular databases. The Open Access movement reached an important tipping point in 2014 when it was estimated that more that 50\% of all scientific publications published from XXX are freely available. Similarly, an increasing number of data repositories have been developed (e.g.~O'Leary \& Kaufman, 2011; Baker et al, 2015), supporting the specialist needs of select scientific communities and challenging the concept of traditional publication, via technologies like dataset DOI's and the concept of data papers (Chavan \& Penev, 2011).
 
-All chapter sections start with a second-level (\texttt{\#\#}) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+The development of hardware involved in the collection of data, has until recently been largely untouched by the transition towards Open Science. This founding ~step in the lifecycle scientific enquiry, is for the most part still the preserve of specialist industries, who typically build proprietary and expensive systems and hardware that are difficult to customise and repurpose. Data loggers, tracking technologies and camera traps are examples of commonly deployed hardware systems that are indispensable tools in the monitoring of biodiversity. In many cases the specialist needs of biologists are hinders by the tiny commercial markets for devices, prohibiting deployment and development of these systems to all but the mosts general and common applications. To fill this gap, the principles of modularity, reuse and open licensing which are now commonplace within the open source and open access movement, need to be applied to hardware development.
 
-\subsection*{An unnumbered section}\label{an-unnumbered-section}
-\addcontentsline{toc}{subsection}{An unnumbered section}
+There is a common need for a low-cost, low-power, miniaturised, general purpose computing platform that can fulfil the need for multiple common biological use cases. The rise of the maker movement, has popularised the open hardware Arduino platform which fulfils these needs. Arduino has a mature community of hardware and software developers. Coupled with the very low cost and wide availability of modular components, this platform has significantly lowered the barrier to entry for many would-be hardware developers who would otherwise be put off by the expense and expertise required to build specialist equipment.
 
-Chapters and sections are numbered by default. To un-number a heading, add a \texttt{\{.unnumbered\}} or the shorter \texttt{\{-\}} at the end of the heading, like in this section.
+This book is a foray into the rise of the maker movement for biologists. The introductory chapters cover an array of essential topics which develop the skills necessary to build open hardware devices. These are accompanied by a series of exemplar projects which put this theory into practice, highlighting the ease with which the Arduino platform can be repurposed for multiple uses. These use cases highlight why the transformation to Open Hardware is an essential component of the Open Science Movement. Many address neche scientific endeavours which could never be commercialised. For example, the chapter on building a snail heart rate monitor has a clear scientific objective which opens a new window into the biology of snails, but is unlikely to attract the attention of IBM, Google or Microsoft. Other projects have commercial equivalents available but at a significantly higher cost, and lack flexibility. One advantage of Arduino is that several of these projects could be combined into a single integrated device that addresses multiple questions, increasing the cost saving by an order of magnitude over independent commercial solutions. For example, a data logger can easily be integrated with a camera trap, helping to correlate behavior with environmental ~conditions. The chapter on the Open Source Data Logger (OSDL) project covers integration of multiple devices over large geographic distances to create a modular sensor network.
 
-\chapter{Cross-references}\label{cross}
+The book concludes with a short series of chapters on linking these devices to external platforms such as MatLab and Open Source Web content Management Systems. Linking a sensor network to the Internet, moves us toward the vision of the Internet-of-Things, in which potentially even the biotic and abiotic elements of an environment can be monitored continuously in real time. The potential application for this wealth of data are presently hard to conceive, but like any field exposed to the big data revolution, the outcome is likely to be transformative. Most predictives studies on the natural world, rely upon large and high quality datasets that track spatial and temporal changes and correlate these which environmental change. These data are typically time consuming to collect, involving months and sometimes years of repeated field studies that are exceptionally difficult and costly to sustain. The rise of automated monitoring has the potential to transform field studies, providing continuous data collection at ever improving levels of resolution. This takes the biological community a huge leap towards the goal of modeling the every facet of the biosphere, and being able to make predictive use of these data to address some of the long term challenges facing humanity, such as climate change, developing sustainable food resources and controlling the impact of invasive species.
 
-Cross-references make it easier for your readers to find and link to elements in your book.
+The rise of the Open Hardware movement has the potential to add a final layer of accountability of transparency to the scientific process. In the past, scientific hardware has quite literally been a black-box, which is opaque to all but a handful of specialists who understand the constraints and limits of these systems. Often commercial interests reinforce this opacity, leading to patents that prevent others from further development. The rise of the maker movement, and particularly systems like Arduino, provide an opportunity to transform the business models of these industries in the same way that has happened for the Open Source and Open Access movement. Rather than the construction of paid-for systems that limit innovation and reuse, Open Hardware creates an opportunity for the makers of platforms to commercialise services around these systems. For example, within the Open Source software community, RedHat and Aquia sell services around open source products that they have contributed significantly to. Likewise within the Open Access movement, publishers increasingly monetise services around the peer review of scientific articles, rather rather than access to the article. These transformations in business models keep the underlying platforms free and open to innovation for most, while providing commercial levels of support with agreed levels of service provision for those that need it.
 
-\section{Chapters and sub-chapters}\label{chapters-and-sub-chapters}
+It is still early days for the Open Hardware movement, particularly in the biological sciences where specialist skills in niche areas are still required to develop and deploy systems. My hope is that books like this can help seed the same transformation which has taken place in other stages of the scientific process, so that the emphasis on development switches to the building of open platforms for hardware development, rather than bespoke products and proprietary systems.
 
-There are two steps to cross-reference any heading:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Label the heading: \texttt{\#\ Hello\ world\ \{\#nice-label\}}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Leave the label off if you like the automated heading generated based on your heading title: for example, \texttt{\#\ Hello\ world} = \texttt{\#\ Hello\ world\ \{\#hello-world\}}.
-  \item
-    To label an un-numbered heading, use: \texttt{\#\ Hello\ world\ \{-\#nice-label\}} or \texttt{\{\#\ Hello\ world\ .unnumbered\}}.
-  \end{itemize}
-\item
-  Next, reference the labeled heading anywhere in the text using \texttt{\textbackslash{}@ref(nice-label)}; for example, please see Chapter \ref{cross}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    If you prefer text as the link instead of a numbered reference use: \hyperref[cross]{any text you want can go here}.
-  \end{itemize}
-\end{enumerate}
-
-\section{Captioned figures and tables}\label{captioned-figures-and-tables}
-
-Figures and tables \emph{with captions} can also be cross-referenced from elsewhere in your book using \texttt{\textbackslash{}@ref(fig:chunk-label)} and \texttt{\textbackslash{}@ref(tab:chunk-label)}, respectively.
-
-See Figure \ref{fig:nice-fig}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth,alt={Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases.}]{_main_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Don't miss Table \ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-temperature & pressure\\
-\midrule
-0 & 0.0002\\
-20 & 0.0012\\
-40 & 0.0060\\
-60 & 0.0300\\
-80 & 0.0900\\
-\addlinespace
-100 & 0.2700\\
-120 & 0.7500\\
-140 & 1.8500\\
-160 & 4.2000\\
-180 & 8.8000\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\chapter{Parts}\label{parts}
-
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
-
-Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
-
-Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
-
-Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
-
-\chapter{Footnotes and citations}\label{footnotes-and-citations}
-
-\section{Footnotes}\label{footnotes}
-
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
-
-\section{Citations}\label{citations}
-
-Reference items in your bibliography file(s) using \texttt{@key}.
-
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
-
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
-
-\chapter{Blocks}\label{blocks}
-
-\section{Equations}\label{equations}
-
-Here is an equation.
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  \label{eq:binom}
-\end{equation}
-
-You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
-
-\section{Theorems and proofs}\label{theorems-and-proofs}
-
-Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
-
-\begin{theorem}
-\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
-and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
-\[a^2 + b^2 = c^2\]
-\end{theorem}
-
-Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
-
-\section{Callout blocks}\label{callout-blocks}
-
-The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
-
-\chapter{Sharing your book}\label{sharing-your-book}
-
-\section{Publishing}\label{publishing}
-
-HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
-
-\section{404 pages}\label{pages}
-
-By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
-
-\section{Metadata for sharing}\label{metadata-for-sharing}
-
-Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
-
-This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
-
-Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
-
-Read more about the features of this output format here:
-
-\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
-
-Or use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
-\end{Highlighting}
-\end{Shaded}
-
-
-  \bibliography{book.bib,packages.bib}
+\bibliography{book.bib,packages.bib}
 
 \end{document}
