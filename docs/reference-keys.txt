@@ -6,4 +6,4 @@ current
 voltage
 resistance
 arduino-hardware
-micrnctollers
+microcontollers
