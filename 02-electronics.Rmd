@@ -1,0 +1,28 @@
+# Electronics
+
+## Introduction
+
+A basic knowledge of electronics is useful for creating Arduino based projects. The introduction to electronics presented here describes the basics needed to make the projects described in this book. When creating your own projects a more comprehensive reference is likely to be useful. Practical Electronics for Inventors (Scherz, 2007) is a recommended reference that explains clearly many electronic concepts and discusses a wide range of electronic components in depth.
+The projects in this book (with the exception of the automatic plant watering system) make use of battery power, and can therefore be considered as relatively safe. Working with mains electricity is a more dangerous proposition - always check with a qualified electrician that both what you plan to do, and that what you have built, is safe before working with it.
+
+## Current, Voltage and Resistance
+
+Electric circuits consist of a power supply (battery, mains, etc) and a number of electronic components that effect the flow of the electricity. Some components act primarily to regulate the flow of electric current (such as resistors), others primary purpose is to turn electric energy into another form (such as a light bulb). In order to understand how these components work together it is necessary to have an understanding of how electricity behaves. The basic properties of an electric current are the current, voltage and resistance.
+
+## Current
+An electric current is a flow of negatively charged electrons through an electrical conductor. The electrons travel from the negative side of the power supply to the positive side through whatever circuit we have constructed. It should be noted that this ‘electron flow’ travels in the opposite direction to the ‘conventional current’. The reason for this is historic: before our microscopic understanding of electrons was developed it was assumed that it was positive particles that moved through the circuit. In fact, the positive charged particles of the conductor remain static while the mobile negatively charged electrons move through it.
+Current is defined as the amount of charged particles that move through a conductor in a given period of time. The unit of measurement of charge is the Coulomb (C), and an electron has a charge of -1.602x10-19C. The current is measured in Amperes (A; amp), and is defined as the number of Coulombs of charge passing a point in a conductor in a given time interval. One Ampere is the current flowing when one Coulomb of charge passes a point in one second (Fig XX). Table XX shows some typical values of current for a variety of electrical devices.
+
+```{r}
+item <- c("Light-emitting Dioide (LED)", "100W Lightbulb", "Laptop computer", "Microwave")
+current <- c("20mA", "1A", "3A", "10A")
+table <- cbind(item, current)
+knitr::kable(table, caption = "Typical current values for a variety of electrical devices.")
+```
+
+The number of electrons flowing through a circuit is not changed by the electrical components, so the total current is always conserved (Fig XX).
+
+## Voltage
+Electronic components that are not sources of power convert electrical energy to other forms of energy, e.g. a light bulb converts electrical energy to thermal and light energy. Voltage is therefore not conserved through a circuit. We typically  consider the negative terminal of the power supply to have a voltage of 0V. When using a 1.5V battery the full 1.5V is dissipated by the connected circuit. This is the reason that short circuiting a car battery with a wire will often result in that wire heating up to the point that it melts. We will see later that we can use resistors to protect sensitive electronic components that would be damaged if exposed to the full power of the battery.
+
+## Resistance

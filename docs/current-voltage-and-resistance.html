@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Arduino for biologists and environmental scientists</title>
+  <title>Chapter 3 Current, Voltage and Resistance | Arduino for biologists and environmental scientists</title>
   <meta name="description" content="Using Arduino for biological and environmental science." />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Arduino for biologists and environmental scientists" />
+  <meta property="og:title" content="Chapter 3 Current, Voltage and Resistance | Arduino for biologists and environmental scientists" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Using Arduino for biological and environmental science." />
   <meta name="github-repo" content="wildlife-systems/arduino" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Arduino for biologists and environmental scientists" />
+  <meta name="twitter:title" content="Chapter 3 Current, Voltage and Resistance | Arduino for biologists and environmental scientists" />
   
   <meta name="twitter:description" content="Using Arduino for biological and environmental science." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="electronics.html"/>
+<link rel="next" href="arduino-hardware.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,14 +144,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="electronics.html"><a href="electronics.html"><i class="fa fa-check"></i><b>2</b> Electronics</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="electronics.html"><a href="electronics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
-<li class="chapter" data-level="2.2" data-path="electronics.html"><a href="electronics.html#current-voltage-and-resistance"><i class="fa fa-check"></i><b>2.2</b> Current, Voltage and Resistance</a></li>
-<li class="chapter" data-level="2.3" data-path="electronics.html"><a href="electronics.html#current"><i class="fa fa-check"></i><b>2.3</b> Current</a></li>
-<li class="chapter" data-level="2.4" data-path="electronics.html"><a href="electronics.html#voltage"><i class="fa fa-check"></i><b>2.4</b> Voltage</a></li>
-<li class="chapter" data-level="2.5" data-path="electronics.html"><a href="electronics.html#resistance"><i class="fa fa-check"></i><b>2.5</b> Resistance</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="arduino-hardware.html"><a href="arduino-hardware.html"><i class="fa fa-check"></i><b>3</b> Arduino Hardware</a>
+<li class="chapter" data-level="3" data-path="current-voltage-and-resistance.html"><a href="current-voltage-and-resistance.html"><i class="fa fa-check"></i><b>3</b> Current, Voltage and Resistance</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="arduino-hardware.html"><a href="arduino-hardware.html#micrnctollers"><i class="fa fa-check"></i><b>3.1</b> Micrnctollers</a></li>
+<li class="chapter" data-level="3.1" data-path="current-voltage-and-resistance.html"><a href="current-voltage-and-resistance.html#current"><i class="fa fa-check"></i><b>3.1</b> Current</a></li>
+<li class="chapter" data-level="3.2" data-path="current-voltage-and-resistance.html"><a href="current-voltage-and-resistance.html#voltage"><i class="fa fa-check"></i><b>3.2</b> Voltage</a></li>
+<li class="chapter" data-level="3.3" data-path="current-voltage-and-resistance.html"><a href="current-voltage-and-resistance.html#resistance"><i class="fa fa-check"></i><b>3.3</b> Resistance</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="arduino-hardware.html"><a href="arduino-hardware.html"><i class="fa fa-check"></i><b>4</b> Arduino Hardware</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="arduino-hardware.html"><a href="arduino-hardware.html#micrnctollers"><i class="fa fa-check"></i><b>4.1</b> Micrnctollers</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -174,19 +176,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="current-voltage-and-resistance" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Current, Voltage and Resistance<a href="current-voltage-and-resistance.html#current-voltage-and-resistance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Electric circuits consist of a power supply (battery, mains, etc) and a number of electronic components that effect the flow of the electricity. Some components act primarily to regulate the flow of electric current (such as resistors), others primary purpose is to turn electric energy into another form (such as a light bulb). In order to understand how these components work together it is necessary to have an understanding of how electricity behaves. The basic properties of an electric current are the current, voltage and resistance.</p>
+<div id="current" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Current<a href="current-voltage-and-resistance.html#current" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An electric current is a flow of negatively charged electrons through an electrical conductor. The electrons travel from the negative side of the power supply to the positive side through whatever circuit we have constructed. It should be noted that this ‘electron flow’ travels in the opposite direction to the ‘conventional current’. The reason for this is historic: before our microscopic understanding of electrons was developed it was assumed that it was positive particles that moved through the circuit. In fact, the positive charged particles of the conductor remain static while the mobile negatively charged electrons move through it.
+Current is defined as the amount of charged particles that move through a conductor in a given period of time. The unit of measurement of charge is the Coulomb (C), and an electron has a charge of -1.602x10-19C. The current is measured in Amperes (A; amp), and is defined as the number of Coulombs of charge passing a point in a conductor in a given time interval. One Ampere is the current flowing when one Coulomb of charge passes a point in one second (Fig XX). Table XX shows some typical values of current for a variety of electrical devices.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="current-voltage-and-resistance.html#cb1-1" tabindex="-1"></a>item <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Light-emitting Dioide (LED)&quot;</span>, <span class="st">&quot;100W Lightbulb&quot;</span>, <span class="st">&quot;Laptop computer&quot;</span>, <span class="st">&quot;Microwave&quot;</span>)</span>
+<span id="cb1-2"><a href="current-voltage-and-resistance.html#cb1-2" tabindex="-1"></a>current <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;20mA&quot;</span>, <span class="st">&quot;1A&quot;</span>, <span class="st">&quot;3A&quot;</span>, <span class="st">&quot;10A&quot;</span>)</span>
+<span id="cb1-3"><a href="current-voltage-and-resistance.html#cb1-3" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(item, current)</span>
+<span id="cb1-4"><a href="current-voltage-and-resistance.html#cb1-4" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table, <span class="at">caption =</span> <span class="st">&quot;Typical current values for a variety of electrical devices.&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 3.1: </span>Typical current values for a variety of electrical devices.</caption>
+<thead>
+<tr class="header">
+<th align="left">item</th>
+<th align="left">current</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Light-emitting Dioide (LED)</td>
+<td align="left">20mA</td>
+</tr>
+<tr class="even">
+<td align="left">100W Lightbulb</td>
+<td align="left">1A</td>
+</tr>
+<tr class="odd">
+<td align="left">Laptop computer</td>
+<td align="left">3A</td>
+</tr>
+<tr class="even">
+<td align="left">Microwave</td>
+<td align="left">10A</td>
+</tr>
+</tbody>
+</table>
+<p>The number of electrons flowing through a circuit is not changed by the electrical components, so the total current is always conserved (Fig XX).</p>
+</div>
+<div id="voltage" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Voltage<a href="current-voltage-and-resistance.html#voltage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Electronic components that are not sources of power convert electrical energy to other forms of energy, e.g. a light bulb converts electrical energy to thermal and light energy. Voltage is therefore not conserved through a circuit. We typically consider the negative terminal of the power supply to have a voltage of 0V. When using a 1.5V battery the full 1.5V is dissipated by the connected circuit. This is the reason that short circuiting a car battery with a wire will often result in that wire heating up to the point that it melts. We will see later that we can use resistors to protect sensitive electronic components that would be damaged if exposed to the full power of the battery.</p>
+</div>
+<div id="resistance" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Resistance<a href="current-voltage-and-resistance.html#resistance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="electronics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="arduino-hardware.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -217,7 +262,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-electronics.Rmd",
 "text": "Edit"
 },
 "history": {
