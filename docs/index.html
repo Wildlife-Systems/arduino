@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Electronics | Arduino for biologists and environmental scientists</title>
+  <title>Arduino for biologists and environmental scientists</title>
   <meta name="description" content="Using Arduino for biological and environmental science." />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Electronics | Arduino for biologists and environmental scientists" />
+  <meta property="og:title" content="Arduino for biologists and environmental scientists" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Using Arduino for biological and environmental science." />
   <meta name="github-repo" content="wildlife-systems/arduino" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Electronics | Arduino for biologists and environmental scientists" />
+  <meta name="twitter:title" content="Arduino for biologists and environmental scientists" />
   
   <meta name="twitter:description" content="Using Arduino for biological and environmental science." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="arduino-hardware.html"/>
+
+<link rel="next" href="electronics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -174,70 +174,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="electronics" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Electronics<a href="electronics.html#electronics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-1" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction<a href="electronics.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A basic knowledge of electronics is useful for creating Arduino based projects. The introduction to electronics presented here describes the basics needed to make the projects described in this book. When creating your own projects a more comprehensive reference is likely to be useful. Practical Electronics for Inventors (Scherz, 2007) is a recommended reference that explains clearly many electronic concepts and discusses a wide range of electronic components in depth.
-The projects in this book (with the exception of the automatic plant watering system) make use of battery power, and can therefore be considered as relatively safe. Working with mains electricity is a more dangerous proposition - always check with a qualified electrician that both what you plan to do, and that what you have built, is safe before working with it.</p>
+<div id="header">
+<h1 class="title">Arduino for biologists and environmental scientists</h1>
+<p class="author"><em>Ed Baked (Ed.)</em></p>
+<p class="date"><em>2025-02-12</em></p>
 </div>
-<div id="current-voltage-and-resistance" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Current, Voltage and Resistance<a href="electronics.html#current-voltage-and-resistance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Electric circuits consist of a power supply (battery, mains, etc) and a number of electronic components that effect the flow of the electricity. Some components act primarily to regulate the flow of electric current (such as resistors), others primary purpose is to turn electric energy into another form (such as a light bulb). In order to understand how these components work together it is necessary to have an understanding of how electricity behaves. The basic properties of an electric current are the current, voltage and resistance.</p>
-</div>
-<div id="current" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Current<a href="electronics.html#current" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>An electric current is a flow of negatively charged electrons through an electrical conductor. The electrons travel from the negative side of the power supply to the positive side through whatever circuit we have constructed. It should be noted that this ‘electron flow’ travels in the opposite direction to the ‘conventional current’. The reason for this is historic: before our microscopic understanding of electrons was developed it was assumed that it was positive particles that moved through the circuit. In fact, the positive charged particles of the conductor remain static while the mobile negatively charged electrons move through it.
-Current is defined as the amount of charged particles that move through a conductor in a given period of time. The unit of measurement of charge is the Coulomb (C), and an electron has a charge of -1.602x10-19C. The current is measured in Amperes (A; amp), and is defined as the number of Coulombs of charge passing a point in a conductor in a given time interval. One Ampere is the current flowing when one Coulomb of charge passes a point in one second (Fig XX). Table XX shows some typical values of current for a variety of electrical devices.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="electronics.html#cb1-1" tabindex="-1"></a>item <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Light-emitting Dioide (LED)&quot;</span>, <span class="st">&quot;100W Lightbulb&quot;</span>, <span class="st">&quot;Laptop computer&quot;</span>, <span class="st">&quot;Microwave&quot;</span>)</span>
-<span id="cb1-2"><a href="electronics.html#cb1-2" tabindex="-1"></a>current <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;20mA&quot;</span>, <span class="st">&quot;1A&quot;</span>, <span class="st">&quot;3A&quot;</span>, <span class="st">&quot;10A&quot;</span>)</span>
-<span id="cb1-3"><a href="electronics.html#cb1-3" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(item, current)</span>
-<span id="cb1-4"><a href="electronics.html#cb1-4" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table, <span class="at">caption =</span> <span class="st">&quot;Typical current values for a variety of electrical devices.&quot;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-1">Table 1.1: </span>Typical current values for a variety of electrical devices.</caption>
-<thead>
-<tr class="header">
-<th align="left">item</th>
-<th align="left">current</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Light-emitting Dioide (LED)</td>
-<td align="left">20mA</td>
-</tr>
-<tr class="even">
-<td align="left">100W Lightbulb</td>
-<td align="left">1A</td>
-</tr>
-<tr class="odd">
-<td align="left">Laptop computer</td>
-<td align="left">3A</td>
-</tr>
-<tr class="even">
-<td align="left">Microwave</td>
-<td align="left">10A</td>
-</tr>
-</tbody>
-</table>
-<p>The number of electrons flowing through a circuit is not changed by the electrical components, so the total current is always conserved (Fig XX).</p>
-</div>
-<div id="voltage" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Voltage<a href="electronics.html#voltage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Electronic components that are not sources of power convert electrical energy to other forms of energy, e.g. a light bulb converts electrical energy to thermal and light energy. Voltage is therefore not conserved through a circuit. We typically consider the negative terminal of the power supply to have a voltage of 0V. When using a 1.5V battery the full 1.5V is dissipated by the connected circuit. This is the reason that short circuiting a car battery with a wire will often result in that wire heating up to the point that it melts. We will see later that we can use resistors to protect sensitive electronic components that would be damaged if exposed to the full power of the battery.</p>
-</div>
-<div id="resistance" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Resistance<a href="electronics.html#resistance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction" class="section level1 unnumbered hasAnchor">
+<h1>Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Vince Smith 2017</p>
+<p>If data collection, analysis and publication are the central tenets of scientific practice, then to date, only two of these processes have been significantly transformed by the Open Science movement. Open Source software has become the prevailing paradigm to support scientific enquiry, providing a new level of transparency and repeatability to the scientific process. Programming and scripting skills are becoming the norm amongst researchers within the biological science community, creating a new wave of innovation and reusable free tools that were once the preserve of a handful of software developers. Likewise, Open Publishing and Open Access to scientific data has accelerated a culture of data sharing and reuse, pioneered by the likes of GenBank and related molecular databases. The Open Access movement reached an important tipping point in 2014 when it was estimated that more that 50% of all scientific publications published from XXX are freely available. Similarly, an increasing number of data repositories have been developed (e.g. O’Leary &amp; Kaufman, 2011; Baker et al, 2015), supporting the specialist needs of select scientific communities and challenging the concept of traditional publication, via technologies like dataset DOI’s and the concept of data papers (Chavan &amp; Penev, 2011).</p>
+<p>The development of hardware involved in the collection of data, has until recently been largely untouched by the transition towards Open Science. This founding  step in the lifecycle scientific enquiry, is for the most part still the preserve of specialist industries, who typically build proprietary and expensive systems and hardware that are difficult to customise and repurpose. Data loggers, tracking technologies and camera traps are examples of commonly deployed hardware systems that are indispensable tools in the monitoring of biodiversity. In many cases the specialist needs of biologists are hinders by the tiny commercial markets for devices, prohibiting deployment and development of these systems to all but the mosts general and common applications. To fill this gap, the principles of modularity, reuse and open licensing which are now commonplace within the open source and open access movement, need to be applied to hardware development.</p>
+<p>There is a common need for a low-cost, low-power, miniaturised, general purpose computing platform that can fulfil the need for multiple common biological use cases. The rise of the maker movement, has popularised the open hardware Arduino platform which fulfils these needs. Arduino has a mature community of hardware and software developers. Coupled with the very low cost and wide availability of modular components, this platform has significantly lowered the barrier to entry for many would-be hardware developers who would otherwise be put off by the expense and expertise required to build specialist equipment.</p>
+<p>This book is a foray into the rise of the maker movement for biologists. The introductory chapters cover an array of essential topics which develop the skills necessary to build open hardware devices. These are accompanied by a series of exemplar projects which put this theory into practice, highlighting the ease with which the Arduino platform can be repurposed for multiple uses. These use cases highlight why the transformation to Open Hardware is an essential component of the Open Science Movement. Many address neche scientific endeavours which could never be commercialised. For example, the chapter on building a snail heart rate monitor has a clear scientific objective which opens a new window into the biology of snails, but is unlikely to attract the attention of IBM, Google or Microsoft. Other projects have commercial equivalents available but at a significantly higher cost, and lack flexibility. One advantage of Arduino is that several of these projects could be combined into a single integrated device that addresses multiple questions, increasing the cost saving by an order of magnitude over independent commercial solutions. For example, a data logger can easily be integrated with a camera trap, helping to correlate behavior with environmental  conditions. The chapter on the Open Source Data Logger (OSDL) project covers integration of multiple devices over large geographic distances to create a modular sensor network.</p>
+<p>The book concludes with a short series of chapters on linking these devices to external platforms such as MatLab and Open Source Web content Management Systems. Linking a sensor network to the Internet, moves us toward the vision of the Internet-of-Things, in which potentially even the biotic and abiotic elements of an environment can be monitored continuously in real time. The potential application for this wealth of data are presently hard to conceive, but like any field exposed to the big data revolution, the outcome is likely to be transformative. Most predictives studies on the natural world, rely upon large and high quality datasets that track spatial and temporal changes and correlate these which environmental change. These data are typically time consuming to collect, involving months and sometimes years of repeated field studies that are exceptionally difficult and costly to sustain. The rise of automated monitoring has the potential to transform field studies, providing continuous data collection at ever improving levels of resolution. This takes the biological community a huge leap towards the goal of modeling the every facet of the biosphere, and being able to make predictive use of these data to address some of the long term challenges facing humanity, such as climate change, developing sustainable food resources and controlling the impact of invasive species.</p>
+<p>The rise of the Open Hardware movement has the potential to add a final layer of accountability of transparency to the scientific process. In the past, scientific hardware has quite literally been a black-box, which is opaque to all but a handful of specialists who understand the constraints and limits of these systems. Often commercial interests reinforce this opacity, leading to patents that prevent others from further development. The rise of the maker movement, and particularly systems like Arduino, provide an opportunity to transform the business models of these industries in the same way that has happened for the Open Source and Open Access movement. Rather than the construction of paid-for systems that limit innovation and reuse, Open Hardware creates an opportunity for the makers of platforms to commercialise services around these systems. For example, within the Open Source software community, RedHat and Aquia sell services around open source products that they have contributed significantly to. Likewise within the Open Access movement, publishers increasingly monetise services around the peer review of scientific articles, rather rather than access to the article. These transformations in business models keep the underlying platforms free and open to innovation for most, while providing commercial levels of support with agreed levels of service provision for those that need it.</p>
+<p>It is still early days for the Open Hardware movement, particularly in the biological sciences where specialist skills in niche areas are still required to develop and deploy systems. My hope is that books like this can help seed the same transformation which has taken place in other stages of the scientific process, so that the emphasis on development switches to the building of open platforms for hardware development, rather than bespoke products and proprietary systems.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="arduino-hardware.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+<a href="electronics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -268,7 +228,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/wildlife-systems/arduino/main/BRANCH/02-electronics.Rmd",
+"link": "https://github.com/wildlife-systems/arduino/main/BRANCH/index.Rmd",
 "text": "Edit"
 },
 "history": {
