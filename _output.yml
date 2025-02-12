@@ -6,7 +6,7 @@ bookdown::gitbook:
         <li><a href="./">Arduino for Biologists</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/wildlife-systems/arduino/main/%s
+    edit: https://github.com/wildlife-systems/arduino/blob/main/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
