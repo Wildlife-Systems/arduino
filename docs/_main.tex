@@ -1,11 +1,10 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+%
 \documentclass[
 ]{book}
-\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -36,6 +35,7 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -88,25 +88,27 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi%
-}
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Set default figure placement to htbp
+\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-\usepackage{booktabs}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -118,7 +120,7 @@
 
 \title{Arduino for biologists and environmental scientists}
 \author{Ed Baked (Ed.)}
-\date{2025-02-12}
+\date{2025-02-13}
 
 \begin{document}
 \maketitle
@@ -206,6 +208,28 @@ Microcontrollers are at the heart of many everyday electronic devices, from simp
 
 One of the advantages of using a microcontroller is that it is a multi-functional device, by writing a program to run on the microcontroller you can define what it does. The Arduino is an easily re-programmable microcontroller board that can be re-purposed using your computer and a USB cable. This makes an Arduino an incredibly useful piece of lab equipment. When it's not being used as a temperature and humidity monitor alongside a malaise trap it can be used to monitor plant growth using an ultrasonic distance detector, or even act as a miniature web server. The alternative to a programmable microcontroller is learning what the vast array of individual integrated circuit chips each do, and painstakingly finding a way to get them to work together, for a single purpose. While this is still a useful skill for electronic engineers and hobbyists it is a daunting and time consuming new skill set for most biologists. The Arduino is intended to democratise access to microcontrollers, making their functionality available to interaction designers as well as artists and scientists. You will still need to learn some basics, but far less than you would need to know without the Arduino system.
 
-\bibliography{book.bib,packages.bib}
+\chapter{Arduino Software}\label{arduino-software}
+
+\section{Introduction to Arduino Programming}\label{introduction-to-arduino-programming}
+
+Programming or coding is the process of creating a set of instructions to be carried out by a computer. The micro-controller on the Arduino board understands instructions written in binary: strings of the digits 0 and 1. Thankfully we do not have to interact with the Arduino in this way, instead we use a higher level language based on C. High level languages allow us to write instructions for the micro-controller using commands that are (at least in general) understandable in English. The use of English words not only makes it easier to read code you (or somebody else) has written, it also makes it easier to remember the instructions you can give the Arduino allowing you to write code far more quickly. One thing to note however is that the grammar of English is rather flexible: the ongoing debate on the merits or otherwise of the Oxford Comma is just one example. In the language of the Arduino the grammar (or syntax in computer science speak) is rigidly fixed. You will at some point run across errors as seemingly trivial as a missing semi-colon that prevent your code from working. Just remember that the Arduino cannot think, it is just a device that follows your instructions. For that to happen your instructions need to be correct and precise.
+
+So we know that the Arduino understands only 0s and 1s, but that we can program it using a high level language; how does one get converted into the other? The Arduino software includes a compiler - software that takes your high level work (the source code), checks it for errors, and then compiles it. Compiling is the process of turning source code into code that is executable (can be run on the Arduino). The Arduino software also handles the process of transferring the executable code onto the Arduino board over a USB cable.
+
+It should be noted that the Arduino software provides a single interface to a number of tasks that would otherwise have to be performed independently: source code compilation and writing of the executable. It is still possible to do these processes as separate steps, and if you become an expert at Arduino there are times when this process has its advantages. For the purposes of this book however all programming and writing can be performed using the simplified graphic user interface of the Arduino software.
+
+\subsection{A note on C //TODO: \& C++ as Arduino uses both}\label{a-note-on-c-todo-c-as-arduino-uses-both}
+
+While C is a high-level language it is not as abstract as other languages you may be familiar with such as Python or R. Python is the language of choice for many people using the Raspberry Pi - another cheap hardware device that may be used for many biological applications. Python code, unlike C, is not compiled but is interpreted another program runs the program that you have written. The advantages of this are that Python is a simpler language to learn, and generally more forgiving to beginners. The disadvantage is that the Python interpreter requires more resources than are available on the Arduino.
+
+C is also a strongly-typed language, unlike Python and PHP. This means that it will not automatically convert integers into decimal (floating point) numbers for you. You must also specify the type of each variable that you use. This may seem a disadvantage but working this out takes memory, extra code and more processor cycles - all things that are lacking on resource-constrained microcontrollers.
+
+That said I believe learning C in a low-resource environment such as the Arduino will in the long run make you a more competent programmer.
+
+\subsection{Git and GitHub}\label{git-and-github}
+
+Many of the examples discussed here can be downloaded from the website GitHub. GitHub is built on git, a tool developed to allow for distributed version control. Git, GitHub and `social coding' are discussed in a later chapter. For now you can just use the zip file download available from the GitHub page given the project.
+
+  \bibliography{book.bib,packages.bib}
 
 \end{document}

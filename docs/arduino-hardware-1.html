@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Arduino for biologists and environmental scientists</title>
+  <title>Chapter 3 Arduino Hardware | Arduino for biologists and environmental scientists</title>
   <meta name="description" content="Using Arduino for biological and environmental science." />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Arduino for biologists and environmental scientists" />
+  <meta property="og:title" content="Chapter 3 Arduino Hardware | Arduino for biologists and environmental scientists" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Using Arduino for biological and environmental science." />
   <meta name="github-repo" content="wildlife-systems/arduino" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Arduino for biologists and environmental scientists" />
+  <meta name="twitter:title" content="Chapter 3 Arduino Hardware | Arduino for biologists and environmental scientists" />
   
   <meta name="twitter:description" content="Using Arduino for biological and environmental science." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="arduino-hardware.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -153,12 +153,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="arduino-hardware.html"><a href="arduino-hardware.html#microcontollers"><i class="fa fa-check"></i><b>2.1</b> Microcontollers</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="arduino-software.html"><a href="arduino-software.html"><i class="fa fa-check"></i><b>3</b> Arduino Software</a>
+<li class="chapter" data-level="3" data-path="arduino-hardware-1.html"><a href="arduino-hardware-1.html"><i class="fa fa-check"></i><b>3</b> Arduino Hardware</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="arduino-software.html"><a href="arduino-software.html#introduction-to-arduino-programming"><i class="fa fa-check"></i><b>3.1</b> Introduction to Arduino Programming</a>
+<li class="chapter" data-level="3.1" data-path="arduino-hardware-1.html"><a href="arduino-hardware-1.html#introduction-to-arduino-programming"><i class="fa fa-check"></i><b>3.1</b> Introduction to Arduino Programming</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="arduino-software.html"><a href="arduino-software.html#a-note-on-c-todo-c-as-arduino-uses-both"><i class="fa fa-check"></i><b>3.1.1</b> A note on C //TODO: &amp; C++ as Arduino uses both</a></li>
-<li class="chapter" data-level="3.1.2" data-path="arduino-software.html"><a href="arduino-software.html#git-and-github"><i class="fa fa-check"></i><b>3.1.2</b> Git and GitHub</a></li>
+<li class="chapter" data-level="3.1.1" data-path="arduino-hardware-1.html"><a href="arduino-hardware-1.html#a-note-on-c-todo-c-as-arduino-uses-both"><i class="fa fa-check"></i><b>3.1.1</b> A note on C //TODO: &amp; C++ as Arduino uses both</a></li>
+<li class="chapter" data-level="3.1.2" data-path="arduino-hardware-1.html"><a href="arduino-hardware-1.html#git-and-github"><i class="fa fa-check"></i><b>3.1.2</b> Git and GitHub</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -182,19 +182,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="arduino-hardware-1" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Arduino Hardware<a href="arduino-hardware-1.html#arduino-hardware-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-arduino-programming" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction to Arduino Programming<a href="arduino-hardware-1.html#introduction-to-arduino-programming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Programming or coding is the process of creating a set of instructions to be carried out by a computer. The micro-controller on the Arduino board understands instructions written in binary: strings of the digits 0 and 1. Thankfully we do not have to interact with the Arduino in this way, instead we use a higher level language based on C. High level languages allow us to write instructions for the micro-controller using commands that are (at least in general) understandable in English. The use of English words not only makes it easier to read code you (or somebody else) has written, it also makes it easier to remember the instructions you can give the Arduino allowing you to write code far more quickly. One thing to note however is that the grammar of English is rather flexible: the ongoing debate on the merits or otherwise of the Oxford Comma is just one example. In the language of the Arduino the grammar (or syntax in computer science speak) is rigidly fixed. You will at some point run across errors as seemingly trivial as a missing semi-colon that prevent your code from working. Just remember that the Arduino cannot think, it is just a device that follows your instructions. For that to happen your instructions need to be correct and precise.</p>
+<p>So we know that the Arduino understands only 0s and 1s, but that we can program it using a high level language; how does one get converted into the other? The Arduino software includes a compiler - software that takes your high level work (the source code), checks it for errors, and then compiles it. Compiling is the process of turning source code into code that is executable (can be run on the Arduino). The Arduino software also handles the process of transferring the executable code onto the Arduino board over a USB cable.</p>
+<p>It should be noted that the Arduino software provides a single interface to a number of tasks that would otherwise have to be performed independently: source code compilation and writing of the executable. It is still possible to do these processes as separate steps, and if you become an expert at Arduino there are times when this process has its advantages. For the purposes of this book however all programming and writing can be performed using the simplified graphic user interface of the Arduino software.</p>
+<div id="a-note-on-c-todo-c-as-arduino-uses-both" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> A note on C //TODO: &amp; C++ as Arduino uses both<a href="arduino-hardware-1.html#a-note-on-c-todo-c-as-arduino-uses-both" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While C is a high-level language it is not as abstract as other languages you may be familiar with such as Python or R. Python is the language of choice for many people using the Raspberry Pi - another cheap hardware device that may be used for many biological applications. Python code, unlike C, is not compiled but is interpreted another program runs the program that you have written. The advantages of this are that Python is a simpler language to learn, and generally more forgiving to beginners. The disadvantage is that the Python interpreter requires more resources than are available on the Arduino.</p>
+<p>C is also a strongly-typed language, unlike Python and PHP. This means that it will not automatically convert integers into decimal (floating point) numbers for you. You must also specify the type of each variable that you use. This may seem a disadvantage but working this out takes memory, extra code and more processor cycles - all things that are lacking on resource-constrained microcontrollers.</p>
+<p>That said I believe learning C in a low-resource environment such as the Arduino will in the long run make you a more competent programmer.</p>
+</div>
+<div id="git-and-github" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Git and GitHub<a href="arduino-hardware-1.html#git-and-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Many of the examples discussed here can be downloaded from the website GitHub. GitHub is built on git, a tool developed to allow for distributed version control. Git, GitHub and ‘social coding’ are discussed in a later chapter. For now you can just use the zip file download available from the GitHub page given the project.</p>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="arduino-hardware.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -225,7 +239,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/wildlife-systems/arduino/blob/main/%s",
+"link": "https://github.com/wildlife-systems/arduino/blob/main/05-ArduinoSoftware.Rmd",
 "text": "Edit"
 },
 "history": {

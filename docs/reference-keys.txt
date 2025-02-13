@@ -7,3 +7,7 @@ voltage
 resistance
 arduino-hardware
 microcontollers
+arduino-software
+introduction-to-arduino-programming
+a-note-on-c-todo-c-as-arduino-uses-both
+git-and-github
